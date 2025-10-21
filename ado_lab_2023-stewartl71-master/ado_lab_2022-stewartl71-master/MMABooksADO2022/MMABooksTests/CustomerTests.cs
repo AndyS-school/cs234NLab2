@@ -4,6 +4,7 @@ using System.Text;
 
 using NUnit.Framework;
 using MMABooksBusinessClasses;
+using NuGet.Frameworks;
 
 namespace MMABooksTests
 {
@@ -32,12 +33,16 @@ namespace MMABooksTests
             Assert.AreEqual(null, def.ZipCode);
 
             Assert.IsNotNull(c);
-            Assert.AreNotEqual(null, def.Name);
+            Assert.AreNotEqual(null, c.Name);
             Assert.AreEqual("Donald, Duck", c.Name);
-            Assert.AreEqual(null, def.Address);
-            Assert.AreEqual(null, def.City);
-            Assert.AreEqual(null, def.State);
-            Assert.AreEqual(null, def.ZipCode);
+            Assert.AreNotEqual(null, c.Address);
+            Assert.AreEqual("101 Main Street", c.Address);
+            Assert.AreNotEqual(null, c.City);
+            Assert.AreEqual("Orlando", c.City);
+            Assert.AreNotEqual(null, c.State);
+            Assert.AreEqual("FL", c.State);
+            Assert.AreNotEqual(null, c.ZipCode);
+            Assert.AreEqual("1001", c.ZipCode);
         }
 
         [Test]
