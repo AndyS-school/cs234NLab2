@@ -22,12 +22,13 @@ namespace MMABooksTests
         public void TestCreateProduct()
         {
             Product p = new Product();
+            p.ProductCode = "aaaa";
             p.Description = "gnome catcher";
             p.UnitPrice = 1;
             p.OnHandQuantity = 100;
 
-            string productCode = ProductDB.AddProduct(p);
-            p = ProductDB.GetProduct(productCode);
+            string testProductCode = ProductDB.AddProduct(p);
+            p = ProductDB.GetProduct("aaaa");
             Assert.AreEqual("gnome catcher", p.Description);
         }
     }

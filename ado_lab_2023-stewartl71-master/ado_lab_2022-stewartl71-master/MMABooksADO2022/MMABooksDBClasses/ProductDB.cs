@@ -54,19 +54,26 @@ namespace MMABooksDBClasses
             MySqlConnection connection = MMABooksDB.GetConnection();
             string insertStatement =
                 "INSERT Products " +
-                "(Description, UnitPrice, OnHandQuantity) " +
-                "VALUES (@Description, @UnitPrice, @OnHandQuantity)";
+                "(ProductCode, Description, UnitPrice, OnHandQuantity) " +
+                "VALUES (@ProductCode, @Description, @UnitPrice, @OnHandQuantity)";
             MySqlCommand insertCommand =
                 new MySqlCommand(insertStatement, connection);
+            insertCommand.Parameters.AddWithValue(
+                "@ProductCode", product.ProductCode);
             insertCommand.Parameters.AddWithValue(
                 "@Description", product.Description);
             insertCommand.Parameters.AddWithValue(
                 "@UnitPrice", product.UnitPrice);
             insertCommand.Parameters.AddWithValue(
                 "@OnHandQuantity", product.OnHandQuantity);
-
+            string productCode = product.ProductCode;
+            return productCode;
+            /*
             try
             {
+                connection.Open();
+
+                /*
                 connection.Open();
                 insertCommand.ExecuteNonQuery();
                 // MySQL specific code for getting last pk value
@@ -74,9 +81,9 @@ namespace MMABooksDBClasses
                     "SELECT LAST_INSERT_ID()";
                 MySqlCommand selectCommand =
                     new MySqlCommand(selectStatement, connection);
-                string productCode = Convert.ToInt32(selectCommand.ExecuteScalar()).ToString();
+                string productCode = Convert.ToString(selectCommand.ExecuteScalar());
                 return productCode;
-                /*
+                
                 connection.Open();
                 insertCommand.ExecuteNonQuery();
                 // MySQL specific code for getting last pk value
@@ -86,7 +93,7 @@ namespace MMABooksDBClasses
                     new MySqlCommand(selectStatement, connection);
                 string productCode = (selectCommand.ExecuteScalar()).ToString();
                 return productCode;
-                */
+                
             }
             catch (MySqlException ex)
             {
@@ -96,6 +103,7 @@ namespace MMABooksDBClasses
             {
                 connection.Close();
             }
+            */
         }
 
         public static bool DeleteProduct(Product product)
