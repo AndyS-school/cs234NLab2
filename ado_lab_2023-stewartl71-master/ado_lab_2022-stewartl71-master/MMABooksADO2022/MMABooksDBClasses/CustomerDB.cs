@@ -115,9 +115,9 @@ namespace MMABooksDBClasses
                 // open the connection
                 connection.Open();
                 // execute the command
-                MySqlDataReader reader = deleteCommand.ExecuteReader();
+                int rows = deleteCommand.ExecuteNonQuery();
                 // if the number of records returned = 1, return true otherwise return false
-                if (reader.Read() == true)
+                if (rows == 1)
                    return true;
                 else
                     return false;
@@ -163,9 +163,9 @@ namespace MMABooksDBClasses
                 // open the connection
                 connection.Open();
                 // execute the command
-                MySqlDataReader reader = updateCommand.ExecuteReader();
+                int rows = updateCommand.ExecuteNonQuery();
                 // if the number of records returned = 1, return true otherwise return false
-                if (reader.Read() == true)
+                if (rows == 1)
                     return true;
                 else
                     return false;

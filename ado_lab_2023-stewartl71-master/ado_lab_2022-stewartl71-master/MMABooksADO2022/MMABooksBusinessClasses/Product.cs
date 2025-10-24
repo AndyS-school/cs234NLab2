@@ -12,7 +12,7 @@ namespace MMABooksBusinessClasses
         //constructors
         public Product() { }
 
-        public Product(string id, string description, Nullable<double> unitPrice, Nullable<int> onHandQuantity)
+        public Product(string id, string description, Nullable<decimal> unitPrice, Nullable<int> onHandQuantity)
         {
             ProductCode = id;
             Description = description;
@@ -22,7 +22,7 @@ namespace MMABooksBusinessClasses
         //instance variables
         private string productCode;
         private string description;
-        private Nullable<double> unitPrice;
+        private Nullable<decimal> unitPrice;
         private Nullable<int> onHandQuantity;
 
         //get/set
@@ -53,7 +53,7 @@ namespace MMABooksBusinessClasses
                     throw new ArgumentOutOfRangeException("description must be between 1 and 50 characters");
             }
         }
-        public Nullable<double> UnitPrice {
+        public Nullable<decimal> UnitPrice {
             get
             {
                 return unitPrice;

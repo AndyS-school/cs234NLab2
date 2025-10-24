@@ -18,7 +18,7 @@ namespace MMABooksTests
         {
             //set default constructor and overloaded constructor w/ values
             def = new Product();
-            p = new Product("aaaa", "gnome tracker", 1.1, 100);
+            p = new Product("aaaa", "gnome tracker", 1, 100);
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace MMABooksTests
             Assert.AreNotEqual(null, p.Description);
             Assert.AreEqual("gnome tracker", p.Description);
             Assert.AreNotEqual(null, p.UnitPrice);
-            Assert.AreEqual(1.1, p.UnitPrice);
+            Assert.AreEqual(1, p.UnitPrice);
             Assert.AreNotEqual(null, p.OnHandQuantity);
             Assert.AreEqual(100, p.OnHandQuantity);
         }

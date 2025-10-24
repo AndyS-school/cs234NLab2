@@ -42,7 +42,7 @@ namespace MMABooksTests
             Assert.AreNotEqual(null, c.State);
             Assert.AreEqual("FL", c.State);
             Assert.AreNotEqual(null, c.ZipCode);
-            Assert.AreEqual("1001", c.ZipCode);
+            Assert.AreEqual("10001", c.ZipCode);
         }
 
         [Test]

@@ -18,7 +18,7 @@ namespace MMABooksDBClasses
                 + "WHERE ProductCode = @ProductCode";
             MySqlCommand selectCommand =
                 new MySqlCommand(selectStatement, connection);
-            selectCommand.Parameters.AddWithValue("@CustomerID", productCode);
+            selectCommand.Parameters.AddWithValue("@ProductCode", productCode);
 
             try
             {
@@ -30,8 +30,8 @@ namespace MMABooksDBClasses
                     Product product = new Product();
                     product.ProductCode = prodReader["ProductCode"].ToString();
                     product.Description = prodReader["Description"].ToString();
-                    product.UnitPrice = (double)prodReader["UnitPrice"];
-                    product.OnHandQuantity = (int)prodReader["City"];
+                    product.UnitPrice = (Nullable<decimal>)prodReader["UnitPrice"];
+                    product.OnHandQuantity = (Nullable<int>)prodReader["OnHandQuantity"];
                     return product;
                 }
                 else
@@ -74,8 +74,19 @@ namespace MMABooksDBClasses
                     "SELECT LAST_INSERT_ID()";
                 MySqlCommand selectCommand =
                     new MySqlCommand(selectStatement, connection);
+                string productCode = Convert.ToInt32(selectCommand.ExecuteScalar()).ToString();
+                return productCode;
+                /*
+                connection.Open();
+                insertCommand.ExecuteNonQuery();
+                // MySQL specific code for getting last pk value
+                string selectStatement =
+                    "SELECT LAST_INSERT_ID()";
+                MySqlCommand selectCommand =
+                    new MySqlCommand(selectStatement, connection);
                 string productCode = (selectCommand.ExecuteScalar()).ToString();
                 return productCode;
+                */
             }
             catch (MySqlException ex)
             {
@@ -106,9 +117,9 @@ namespace MMABooksDBClasses
                 // open the connection
                 connection.Open();
                 // execute the command
-                MySqlDataReader reader = deleteCommand.ExecuteReader();
+                int rows = deleteCommand.ExecuteNonQuery();
                 // if the number of records returned = 1, return true otherwise return false
-                if (reader.Read() == true)
+                if (rows == 1)
                     return true;
                 else
                     return false;
@@ -150,9 +161,9 @@ namespace MMABooksDBClasses
                 // open the connection
                 connection.Open();
                 // execute the command
-                MySqlDataReader reader = updateCommand.ExecuteReader();
+                int rows = updateCommand.ExecuteNonQuery();
                 // if the number of records returned = 1, return true otherwise return false
-                if (reader.Read() == true)
+                if (rows == 1)
                     return true;
                 else
                     return false;

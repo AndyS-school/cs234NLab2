@@ -107,10 +107,10 @@ namespace MMABooksBusinessClasses
             }
             set
             {
-                if ((value.Trim().Length == 5))
-                    address = value;
+                if (value.Trim().Length ==5 || value.Trim().Length == 10)
+                   zipcode  = value;
                 else
-                    throw new ArgumentOutOfRangeException("zipcode must be 5 characters");
+                    throw new ArgumentOutOfRangeException("zipcode must be 5 or 10 characters");
             }
         }
 
